@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>奶蛙快传 v1.7 · 手机到电脑</title><style>
+:root{font-family:Inter,'Segoe UI','Microsoft YaHei',sans-serif;color:#16312d;background:#f5f7f4;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:13px 20px;font-weight:600;background:#e8eeea;color:#23483f}button:hover{filter:brightness(.96)}button:disabled{opacity:.5;cursor:wait}.primary{background:#176c52;color:white}.shell{max-width:1060px;margin:auto;padding:32px 28px}.brand{display:flex;align-items:center;gap:12px;font-weight:750;font-size:24px}.mark{background:#176c52;color:white;border-radius:13px;padding:5px 12px;font-size:27px}.top{display:flex;justify-content:space-between;align-items:center}.badge{font-size:12px;color:#3c6a5a;background:#e5efe6;padding:8px 12px;border-radius:30px}h1{font-size:38px;letter-spacing:-1px;margin:45px 0 12px}p{color:#71817b;line-height:1.8;margin:8px 0 24px}.grid{display:grid;grid-template-columns:330px 1fr;gap:24px}.card{background:white;border:1px solid #e1e8e0;border-radius:24px;padding:26px;box-shadow:0 8px 28px #203d2805}.qrbox{text-align:center}.qr{width:228px;height:228px;image-rendering:pixelated;display:block;margin:16px auto}.card h2{font-size:18px;margin:0 0 14px}.sub{font-size:13px;color:#71817b}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.empty{text-align:center;color:#819087;padding:64px 12px;line-height:2}.empty b{font-size:40px;color:#b0c5b4}.receipt{border-top:1px solid #edf0ec;padding:18px 0}.row{display:flex;align-items:center;gap:12px}.icon{background:#eaf2ec;border-radius:12px;padding:12px;color:#44765c}.name{font-size:14px;font-weight:600;overflow-wrap:anywhere}.meta{font-size:12px;color:#839086;margin-top:6px}.text{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f7f4;border-radius:12px;padding:14px;max-height:180px;overflow:auto;font-size:14px;line-height:1.7}.mini{padding:7px 12px;font-size:12px;margin-top:10px}.foot{font-size:12px;color:#89968e;margin:24px 0;line-height:1.8}.drop{position:relative;border:2px dashed #b9d4c3;border-radius:20px;background:#f5faf6;text-align:center;padding:38px 14px;cursor:pointer}.drop strong{display:block;font-size:18px;margin:10px 0}.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}textarea{width:100%;min-height:190px;resize:vertical;border:1px solid #dce5dc;border-radius:14px;padding:16px;outline-color:#176c52;line-height:1.7}.tabs{display:flex;gap:6px;background:#edf2ed;padding:5px;border-radius:14px;margin-bottom:22px}.tabs button{flex:1;background:transparent}.tabs button.active{background:white;box-shadow:0 2px 6px #1d382412}.mobile{max-width:570px;margin:auto}.mobile h1{font-size:30px;margin-top:34px}.full{width:100%;margin-top:16px}.notice{font-size:14px;line-height:1.6;margin:16px 0;color:#3c7559;overflow-wrap:anywhere}.error{color:#b44a39}progress{width:100%;accent-color:#176c52;height:10px}.hidden{display:none!important}select{max-width:100%;border:1px solid #e1e7df;border-radius:8px;padding:7px;background:white;color:#52695c;margin:8px 0}.tiny{font-size:11px;overflow-wrap:anywhere;color:#8b978c;user-select:all}.connected{color:#176c52}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#183a2e;color:white;padding:12px 22px;border-radius:12px;z-index:9;max-width:90%;text-align:center}@media(max-width:720px){.shell{padding:24px 18px}.grid{grid-template-columns:1fr}h1{font-size:30px;margin-top:32px}.card{padding:22px}.badge{font-size:10px}.empty{padding:25px 10px}.brand{font-size:21px}}@media(prefers-reduced-motion:no-preference){button{transition:filter .15s}}
+
+body.awaiting-entry > main,body.awaiting-entry > #cast{display:none!important}
+.welcome{min-height:100dvh;display:grid;place-items:center;padding:24px}
+.welcome-card{width:min(100%,440px);text-align:center;padding:40px 30px}
+.welcome-card h1{font-size:30px;margin:22px 0 12px}
+.welcome-symbol{font-size:54px;line-height:1.2}
+.welcome-actions{display:flex;gap:12px;margin-top:28px}
+.welcome-actions button{flex:1;font-size:18px;padding:15px}
+.welcome-note{min-height:24px;margin-top:18px;font-size:13px;color:#71817b}
+</style></head><body class="awaiting-entry"><section id="welcome" class="welcome" aria-labelledby="welcomeQuestion"><div class="card welcome-card"><div class="welcome-symbol" aria-hidden="true">🐸</div><div class="sub" style="margin-top:14px">奶蛙快传</div><h1 id="welcomeQuestion">你是奶家人吗？</h1><p style="margin-bottom:0">欢迎来到奶蛙快传 · v1.7 双向版</p><div class="welcome-actions"><button type="button" id="entryYes" class="primary">yes</button><button type="button" id="entryNo">no</button></div><div id="entryNotice" class="welcome-note" role="status" aria-live="polite"></div></div></section><main class="shell"><header class="top"><div class="brand"><span class="mark">↗</span>奶蛙快传</div><span class="badge">手机 ↔ 电脑 · 双向快传</span></header>
+<section id="desktop" class="hidden"><h1>手机和电脑，来回轻松传。</h1><p>扫码连接，文件、照片和文字，接收后自动保存，随时预览和打开。</p><div class="grid"><div class="card qrbox"><h2>① 手机扫码连接</h2><div class="sub">手机和电脑连接同一个 Wi‑Fi</div><img id="qr" class="qr hidden" alt="手机连接二维码"><div id="qrStatus" class="notice" role="status">正在加载连接信息…</div><button id="retryQr" type="button" class="mini">重新加载二维码</button><select id="network" aria-label="选择电脑网络地址"></select><div class="tiny" id="link"></div><button id="copyLink" class="mini">复制手机连接地址</button><div class="foot">用手机相机或浏览器扫码<br>微信扫码后如无法上传，请选择“在浏览器打开”</div></div><div class="card"><div class="row" style="justify-content:space-between"><h2 style="margin:0">② 电脑实时接收</h2><span class="sub" id="count">等待接收</span></div><div id="items"><div class="empty"><b>⇣</b><br>等手机发来第一份内容<br><span class="sub">收到的内容自动保存到同一个接收文件夹</span></div></div><div class="actions"><button class="primary" id="folder">打开接收文件夹</button><button id="stop">结束接收</button></div></div></div><div class="foot" id="savePath"></div><div class="foot">连接不上？确认在同一 Wi‑Fi；如 Windows 弹出防火墙提示，请允许专用网络访问。公共 Wi‑Fi 可能禁止设备互访，可让电脑连接手机热点后重新启动。关闭此网页不会停止接收，请点击“结束接收”。</div></section>
+<section id="desktopSend" class="hidden" style="margin:24px 0"><div class="card"><h2>③ 电脑 → 手机</h2><p>选择内容并发送，手机页面会自动出现。手机手动点击下载，文件不会自动保存到手机。</p><label class="drop" style="display:block;padding:24px"><strong>选择电脑上的文件 / 图片</strong><span class="sub">支持多选 · 单个文件最多 2 GB</span><input id="desktopFiles" type="file" multiple aria-label="选择发送到手机的文件"></label><div id="desktopSelection" class="notice">尚未选择文件</div><button id="desktopSendFiles" class="primary" disabled>发送文件到手机</button><textarea id="desktopMessage" style="min-height:110px;margin-top:22px" placeholder="也可以粘贴文字或链接，发到手机…" aria-label="发送到手机的文字"></textarea><button id="desktopSendText" class="primary full">发送文字到手机</button><div id="desktopStatus" class="notice" role="status"></div><progress id="desktopProgress" max="100" value="0"></progress><h2 style="margin-top:24px">已发给手机</h2><div id="desktopOutbox"><div class="sub">还没有发送内容</div></div></div></section><section id="phone" class="mobile hidden"><h1>手机与电脑，双向快传。</h1><p id="connection">正在连接电脑…</p><div class="card" style="margin-bottom:20px"><div class="row" style="justify-content:space-between"><h2 style="margin:0">电脑发来的内容</h2><button id="refreshPhoneInbox" class="mini" style="margin:0">刷新</button></div><div id="phoneInbox" style="margin-top:16px"><div class="sub">电脑发送后，这里会自动显示。图片可预览，文件点“下载到手机”。</div></div><div id="phoneDownloadStatus" class="sub" role="status" style="margin-top:12px"></div></div><div class="card"><div class="tabs"><button id="fileTab" class="active">文件 / 照片</button><button id="textTab">文字 / 链接</button></div><div id="filesPanel"><label class="drop" id="drop"><span style="font-size:40px;color:#176c52">⊕</span><strong>选择文件或照片</strong><span class="sub">支持多选 · 单个文件最多 2 GB</span><input type="file" multiple id="files" aria-label="选择文件或照片"></label><div id="selection" class="notice">选择后点击下方按钮发送</div><button class="primary full" id="sendFiles" disabled>发送到电脑</button></div><div id="textPanel" class="hidden"><textarea id="message" placeholder="把文字或链接粘贴到这里…" aria-label="待发送文字"></textarea><button class="primary full" id="sendText">发送文字到电脑</button></div><div id="transfer" class="hidden"><div id="status" class="notice" role="status"></div><progress id="progress" max="100" value="0"></progress></div></div><div class="foot">内容直接传到这台电脑，不经过云端。<br>传输时请保持此页面打开，避免手机锁屏。</div></section><div id="toast" class="toast hidden" role="status"></div></main>
+<section id="cast" class="shell hidden" style="padding-top:0"><div class="card"><div class="badge" style="display:inline-block;margin-bottom:16px">HarmonyOS 5 / 6 · 系统投屏助手</div><h2>整屏投到电脑，也能显示相机画面</h2><p>首次使用需要 Windows 安装“无线显示器”，并且电脑硬件支持 Miracast。投屏画面会显示在 Windows 接收窗口。</p><div class="actions"><button class="primary" id="castSettings">打开电脑投屏设置</button><button id="castFeatures">安装入口：无线显示器</button></div><div class="text" style="margin-top:20px">1. 首次准备：点击“安装入口”，在 Windows 的“查看功能 / 添加功能”中搜索并安装“无线显示器”。<br>2. 点击“打开电脑投屏设置”，按页面提示允许投影，然后启动“无线显示器 / 连接”应用。<br>3. 手机开启 WLAN，从右上角下滑打开控制中心，选择“无线投屏”，找到这台电脑，确认连接。<br>4. 要显示摄像头画面：投屏连接成功后，在手机打开“相机”，切换前后摄像头即可。</div><div class="notice" id="computerName"></div><div class="foot">这里调用 Windows 系统投屏功能。文件传输二维码仅用于发文件，不能用于整屏投屏。<br>如果系统提示此电脑不支持接收 Miracast，则当前电脑不能通过此方式投屏。相机是否允许镜像以手机实际表现为准，尚未完成真机验证。<br>相机画面显示在投屏窗口；暂不提供会议软件可选的虚拟摄像头。</div><a href="https://consumer.huawei.com/cn/support/content/zh-cn15871281/" target="_blank" rel="noreferrer" style="color:#176c52;font-size:13px">华为投屏说明</a> · <a href="https://support.microsoft.com/en-gb/windows/hardware/display-graphics/screen-mirroring-and-projecting-to-your-pc-or-wireless-display" target="_blank" rel="noreferrer" style="color:#176c52;font-size:13px">Windows 接收设置说明</a></div></section>
+<script>
+let desktopSelected=[], desktopBusy=false, outboxIds='', inboxPoll=null, outboxPoll=null;
+const $=id=>document.getElementById(id), admin=new URLSearchParams(location.search).get('admin'), token=location.hash.slice(1); let urls=[], qrCodes=[], selected=[], busy=false, timer, online=false;
+const auth=()=>admin?{'X-Admin':admin}:{'X-Token':token};
+async function api(path,body){const r=await fetch('/api/'+path,{method:body===undefined?'GET':'POST',headers:{...auth(),'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});let j=await r.json();if(!r.ok)throw Error(j.error||'连接失败');return j}
+function toast(t){$('toast').textContent=t;$('toast').classList.remove('hidden');clearTimeout(timer);timer=setTimeout(()=>$('toast').classList.add('hidden'),3000)}
+async function copy(text){try{await navigator.clipboard.writeText(text);toast('已复制')}catch{const a=document.createElement('textarea');a.value=text;document.body.append(a);a.select();const ok=document.execCommand('copy');a.remove();toast(ok?'已复制':'请长按文字复制')}}
+function size(n){return n<1024?n+' B':n<1048576?(n/1024).toFixed(1)+' KB':n<1073741824?(n/1048576).toFixed(1)+' MB':(n/1073741824).toFixed(2)+' GB'}
+function network(){
+  const index=Math.max(0,$('network').selectedIndex), u=urls[index];
+  $('qr').classList.add('hidden');
+  if(!u){$('qrStatus').textContent='没有取得连接地址，请点击重新加载二维码';return}
+  $('link').textContent=u;
+  const src=qrCodes[index];
+  if(!src){$('qrStatus').textContent='二维码暂不可用，可以复制上方地址在手机浏览器打开';return}
+  $('qr').onload=()=>{$('qr').classList.remove('hidden');$('qrStatus').textContent=new URL(u).hostname==='127.0.0.1'?'未检测到局域网地址，请连接 Wi-Fi 后重新加载；此地址仅电脑可用':'用手机扫码连接 · v1.7'};
+  $('qr').onerror=()=>{$('qrStatus').textContent='图片显示失败，请重新加载或复制连接地址';$('qr').classList.add('hidden')};
+  $('qr').src=src;
+}
+async function loadConnection(){
+  $('retryQr').disabled=true;$('qrStatus').textContent='正在加载连接信息…';
+  try{
+    const c=await api('config');urls=c.urls||[];qrCodes=c.qrs||[];
+    $('network').replaceChildren();
+    for(const u of urls){const o=document.createElement('option');o.textContent=new URL(u).hostname;$('network').append(o)}
+    $('computerName').textContent='手机搜索这台电脑：'+c.computer;
+    $('savePath').textContent='自动保存位置：'+c.folder+'。收到的文件和文字会一直保留。';
+    network();if(c.qr_error)$('qrStatus').textContent=c.qr_error;
+  }catch(e){$('qr').classList.add('hidden');$('qrStatus').textContent='连接信息加载失败：'+e.message+'。请关闭旧网页，从奶蛙快传双向版.exe重新启动。'}
+  finally{$('retryQr').disabled=false}
+}
+
+async function previewItem(i, system=false, outgoing=false){
+  try{
+    if(!system && /\.(png|jpe?g|gif|webp|bmp|avif)$/i.test(i.name)){
+      const r=await fetch((outgoing?'/api/outbox/preview?id=':'/api/preview?id=')+encodeURIComponent(i.id),{headers:auth()});
+      if(!r.ok){const j=await r.json();throw Error(j.error||'无法预览')}
+      const url=URL.createObjectURL(await r.blob());
+      const dialog=document.createElement('dialog');
+      dialog.style.cssText='border:0;border-radius:20px;padding:20px;max-width:94vw;background:#fff';
+      const title=document.createElement('div');title.textContent=i.name;title.style.cssText='overflow-wrap:anywhere;margin-bottom:14px';
+      const image=document.createElement('img');image.alt=i.name;image.style.cssText='max-width:85vw;max-height:72vh;object-fit:contain;display:block';
+      image.onerror=()=>{image.replaceWith(document.createTextNode(outgoing?'浏览器无法显示此图片，请下载后打开。':'浏览器无法显示此图片，请使用系统应用预览。'))};image.src=url;
+      const close=document.createElement('button');close.textContent='关闭预览';close.className='mini';close.onclick=()=>dialog.close();
+      const external=document.createElement('button');external.textContent='系统应用预览';external.className='mini';external.onclick=()=>previewItem(i,true);
+      dialog.append(title,image,close);if(!outgoing)dialog.append(external);document.body.append(dialog);
+      dialog.onclose=()=>{URL.revokeObjectURL(url);dialog.remove()};dialog.showModal();
+    }else{await api('open',{id:i.id});toast('已使用系统应用打开文件')}
+  }catch(e){toast(e.message)}
+}
+let lastIds='';async function refresh(){
+  try{
+    const {items}=await api('items');
+    $('count').textContent=items.length?'已接收 '+items.length+' 项':'等待接收';
+    const ids=items.map(i=>i.id+':'+i.is_saved).join();if(ids===lastIds)return;lastIds=ids;
+    $('items').replaceChildren();
+    for(const i of items){
+      const el=document.createElement('div');el.className='receipt';
+      const row=document.createElement('div');row.className='row';
+      const icon=document.createElement('div');icon.className='icon';icon.textContent=i.text!==null?'Aa':'↓';
+      const info=document.createElement('div');
+      const name=document.createElement('button');name.className='name';name.textContent=i.name;
+      name.style.cssText='padding:0;background:none;text-align:left;color:#176c52;overflow-wrap:anywhere';
+      name.title='预览 '+i.name;name.onclick=()=>previewItem(i);
+      const meta=document.createElement('div');meta.className='meta';
+      meta.textContent=i.time+' · '+size(i.size)+' · '+(i.is_saved?'已自动保存':'临时接收 · 尚未保存');
+      info.append(name,meta);row.append(icon,info);el.append(row);
+      const preview=document.createElement('button');preview.className='mini';preview.textContent='预览';preview.onclick=()=>previewItem(i);
+      const save=document.createElement('button');save.className='mini primary';save.style.marginLeft='8px';
+      save.textContent=i.is_saved?'已保存':'保存到电脑';save.disabled=Boolean(i.is_saved);
+      save.onclick=async()=>{save.disabled=true;try{await api('save',{id:i.id});toast('已保存到接收文件夹');await refresh()}catch(e){toast(e.message);save.disabled=false}};
+      el.append(preview,save);
+      if(i.text!==null){
+        const t=document.createElement('div');t.className='text';t.textContent=i.text;
+        const b=document.createElement('button');b.className='mini';b.textContent='复制文字';b.onclick=()=>copy(i.text);el.append(t,b);
+      }
+      $('items').append(el);
+    }
+  }catch(e){$('count').textContent='接收服务已断开'}
+}
+function state(b){busy=b;$('sendFiles').disabled=b||!selected.length||!online;$('sendText').disabled=b||!online;$('files').disabled=b;$('fileTab').disabled=b;$('textTab').disabled=b}
+function status(t,err=false){$('transfer').classList.remove('hidden');$('status').textContent=t;$('status').classList.toggle('error',err)}
+function upload(file,index,total,outgoing=false){return new Promise((resolve,reject)=>{const x=new XMLHttpRequest();x.open('POST',outgoing?'/api/outbox/file':'/api/file');for(const [k,v] of Object.entries(auth()))x.setRequestHeader(k,v);x.setRequestHeader('X-Filename',encodeURIComponent(file.name));x.timeout=0;x.upload.onprogress=e=>{if(e.lengthComputable){$(outgoing?'desktopProgress':'progress').value=e.loaded/e.total*100;const msg='正在发送 '+index+'/'+total+'：'+file.name+' · '+Math.round(e.loaded/e.total*100)+'%';if(outgoing)$('desktopStatus').textContent=msg;else status(msg)}};x.onload=()=>{let j;try{j=JSON.parse(x.responseText)}catch{return reject(Error('电脑返回异常，请重新连接'))}x.status===200?resolve(j):reject(Error(j.error||'发送失败'))};x.onerror=()=>reject(Error('连接中断，请检查 Wi‑Fi 后重试'));x.send(file)})}
+$('files').onchange=e=>{selected=Array.from(e.target.files);$('selection').textContent=selected.length?'已选 '+selected.length+' 项 · '+size(selected.reduce((s,f)=>s+f.size,0)):'选择后点击下方按钮发送';state(false)};
+$('sendFiles').onclick=async()=>{if(busy)return;state(true);let sent=0;try{for(const f of selected){if(f.size>2147483648)throw Error(f.name+' 超过 2 GB');await upload(f,sent+1,selected.length);sent++}status('✓ '+sent+' 项已送达，已自动保存到电脑接收文件夹');$('progress').value=100;selected=[];$('files').value='';$('selection').textContent='可以继续选择其他文件'}catch(e){selected=selected.slice(sent);status('已成功 '+sent+' 项。'+e.message+'；再次点击可发送剩余项。',true)}finally{state(false)}};
+$('sendText').onclick=async()=>{if(busy)return;const text=$('message').value;if(!text.trim())return toast('请先输入文字');state(true);status('正在发送文字…');try{await api('text',{text});$('message').value='';$('progress').value=100;status('✓ 文字已送达，已自动保存，可在电脑复制')}catch(e){status(e.message,true)}finally{state(false)}};
+function tab(isFile){$('filesPanel').classList.toggle('hidden',!isFile);$('textPanel').classList.toggle('hidden',isFile);$('fileTab').classList.toggle('active',isFile);$('textTab').classList.toggle('active',!isFile)}$('fileTab').onclick=()=>tab(true);$('textTab').onclick=()=>tab(false);
+function showWelcome(){
+  let entered=false;
+  $('entryNo').onclick=()=>{$('entryNotice').textContent='选择 yes 才能进入哦。'};
+  $('entryYes').onclick=()=>{
+    if(entered)return;entered=true;
+    $('welcome').classList.add('hidden');
+    document.body.classList.remove('awaiting-entry');
+    init();
+  };
+  $('entryYes').focus();
+}
+function desktopState(value){
+  desktopBusy=value;$('desktopFiles').disabled=value;
+  $('desktopSendFiles').disabled=value||!desktopSelected.length;$('desktopSendText').disabled=value;
+}
+$('desktopFiles').onchange=e=>{desktopSelected=Array.from(e.target.files);$('desktopSelection').textContent='已选 '+desktopSelected.length+' 项 · '+size(desktopSelected.reduce((n,f)=>n+f.size,0));desktopState(false)};
+$('desktopSendFiles').onclick=async()=>{
+  if(desktopBusy)return;desktopState(true);let sent=0;
+  try{for(const file of desktopSelected){if(file.size>2147483648)throw Error(file.name+' 超过 2 GB');await upload(file,sent+1,desktopSelected.length,true);sent++}
+    $('desktopStatus').textContent='✓ 已发送 '+sent+' 项。请在手机“电脑发来的内容”中预览或下载。';
+    desktopSelected=[];$('desktopFiles').value='';$('desktopSelection').textContent='可以继续选择其他文件';$('desktopProgress').value=100;
+  }catch(e){desktopSelected=desktopSelected.slice(sent);$('desktopStatus').textContent='已发送 '+sent+' 项。'+e.message+'；再次点击可发送剩余项。'}
+  finally{desktopState(false);await refreshOutbox()}
+};
+$('desktopSendText').onclick=async()=>{
+  if(desktopBusy)return;const text=$('desktopMessage').value;if(!text.trim())return toast('请先输入文字');desktopState(true);
+  try{await api('outbox/text',{text});$('desktopMessage').value='';$('desktopStatus').textContent='✓ 文字已发送，手机上可以查看、复制或下载。';await refreshOutbox()}
+  catch(e){$('desktopStatus').textContent=e.message}finally{desktopState(false)}
+};
+async function refreshOutbox(){
+  const target=$(admin?'desktopOutbox':'phoneInbox');
+  try{
+    const {items}=await api('outbox');const ids=items.map(i=>i.id).join();if(ids===outboxIds)return;outboxIds=ids;target.replaceChildren();
+    for(const i of items){
+      const row=document.createElement('div');row.className='receipt';
+      const title=document.createElement('div');title.className='name';title.textContent=i.name;
+      const meta=document.createElement('div');meta.className='meta';meta.textContent=i.time+' · '+size(i.size)+(admin?' · 手机可领取':'');row.append(title,meta);
+      if(i.text!==null){const text=document.createElement('div');text.className='text';text.textContent=i.text;const cp=document.createElement('button');cp.className='mini';cp.textContent='复制文字';cp.onclick=()=>copy(i.text);row.append(text,cp)}
+      if(/\.(png|jpe?g|gif|webp|bmp|avif)$/i.test(i.name)){const preview=document.createElement('button');preview.className='mini';preview.textContent='预览图片';preview.onclick=()=>previewItem(i,false,true);row.append(preview)}
+      if(!admin){
+        const download=document.createElement('a');download.href='/api/download?id='+encodeURIComponent(i.id)+'&ticket='+encodeURIComponent(i.ticket);download.download=i.name;
+        download.textContent='下载到手机';download.className='primary';download.style.cssText='display:inline-block;border-radius:12px;padding:10px 16px;margin:12px 8px 0 0;text-decoration:none;font-size:14px';
+        download.onclick=()=>{$('phoneDownloadStatus').textContent='已交给浏览器下载，请查看手机浏览器的下载列表。'};row.append(download);
+      }
+      target.append(row);
+    }
+  }catch(e){if(!admin)$('phoneDownloadStatus').textContent='暂时无法获取电脑内容：'+e.message}
+}
+$('refreshPhoneInbox').onclick=()=>{outboxIds='';refreshOutbox()};
+async function init(){
+  if(admin){
+    $('desktop').classList.remove('hidden');$('desktopSend').classList.remove('hidden');$('cast').classList.remove('hidden');
+    $('castSettings').onclick=()=>api('cast-settings',{}).catch(e=>toast(e.message));$('castFeatures').onclick=()=>api('cast-features',{}).catch(e=>toast(e.message));
+    $('retryQr').onclick=loadConnection;await loadConnection();$('network').onchange=network;$('copyLink').onclick=()=>copy(urls[$('network').selectedIndex]);
+    $('folder').onclick=()=>api('folder',{}).catch(e=>toast(e.message));
+    $('stop').onclick=async()=>{try{await api('stop',{});clearInterval(inboxPoll);clearInterval(outboxPoll);$('count').textContent='已结束';$('qr').classList.add('hidden');$('stop').disabled=true;desktopState(true);$('items').replaceChildren();$('desktopOutbox').replaceChildren();toast('已结束，收到的内容已保留在接收文件夹')}catch(e){toast(e.message)}};
+    await Promise.all([refresh(),refreshOutbox()]);inboxPoll=setInterval(refresh,1500);outboxPoll=setInterval(refreshOutbox,1500);
+  }else{
+    $('phone').classList.remove('hidden');
+    try{await api('ping');online=true;$('connection').textContent='● 已连接电脑，可以双向收发';$('connection').classList.add('connected');await refreshOutbox();outboxPoll=setInterval(refreshOutbox,1500)}
+    catch(e){$('connection').textContent='连接已失效，请重新扫描电脑二维码';$('connection').classList.add('error')}
+    state(false);
+  }
+}
+if(location.protocol === "file:"){document.body.classList.remove('awaiting-entry');document.body.innerHTML = '<main class="shell"><div class="card"><h1>请双击启动「奶蛙快传双向版.exe」</h1><p>你现在打开的是界面源码 ui.html。它无法独立生成二维码或接收手机文件。</p><p>请回到文件夹，双击“奶蛙快传双向版.exe”；程序会自动打开正确的接收页面。无需安装 Python。</p></div></main>';}else{showWelcome();}
+</script></body></html>
+
